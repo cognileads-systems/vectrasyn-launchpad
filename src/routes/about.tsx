@@ -103,6 +103,31 @@ function AboutPage() {
         </div>
       </section>
 
+      <section className="section-y" aria-labelledby="payment-terms-heading">
+        <div className="container-page max-w-3xl text-start">
+          <p className="eyebrow">{t("about.payment.eyebrow")}</p>
+          <h2 id="payment-terms-heading" className="mt-3 text-3xl font-bold sm:text-4xl">
+            {t("about.payment.heading")}
+          </h2>
+          <p className="mt-4 text-muted-foreground">{t("about.payment.intro")}</p>
+          <dl className="mt-8 space-y-5">
+            {paymentIds.map((n) => (
+              <div key={n} className="card-soft p-6">
+                <dt className="font-display text-base font-semibold">
+                  {t(`about.payment.item${n}.title`)}
+                </dt>
+                <dd className="mt-2 text-sm text-muted-foreground">
+                  {t(`about.payment.item${n}.body`)}
+                </dd>
+              </div>
+            ))}
+          </dl>
+          <p className="mt-6 text-sm font-medium text-secondary">{t("about.payment.note")}</p>
+        </div>
+      </section>
+
+
+
       <section className="section-y" aria-labelledby="faq-heading">
         <div className="container-page max-w-3xl text-start">
           <p className="eyebrow">{t("about.faq.eyebrow")}</p>
