@@ -1,18 +1,21 @@
-import { useState } from "react";
+import { Check, Plus } from "lucide-react";
+import { toast } from "sonner";
 
-import { currencies, pricingRows, type CurrencyCode } from "../../data/pricing";
+import { currencies, pricingRows } from "../../data/pricing";
 import { useT } from "../../i18n";
+import { useCart } from "../../lib/cart";
 
 /**
  * Self-contained pricing table.
- * The currency selector below is local state only — it is completely independent of
- * the site-wide EN/AR language toggle, which lives in the header.
+ * The currency selector below is shared with the cart only — it is completely independent
+ * of the site-wide EN/AR language toggle, which lives in the header.
  * Intentionally renders NO discount banner or promo code — a promo banner can be
  * added as a sibling component above/below this one without editing this file.
  */
 export function PricingTable() {
-  const [currency, setCurrency] = useState<CurrencyCode>("INR");
+  const { currency, setCurrency, has, add, setOpen } = useCart();
   const t = useT();
+
 
   return (
     <div>
