@@ -4,6 +4,8 @@ import { Menu, X } from "lucide-react";
 
 import { useT } from "../../i18n";
 import { LanguageToggle } from "./LanguageToggle";
+import { CartDrawer } from "./CartDrawer";
+
 
 const nav = [
   { to: "/", key: "nav.home" },
