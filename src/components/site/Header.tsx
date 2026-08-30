@@ -12,7 +12,9 @@ const nav = [
   { to: "/pricing", key: "nav.pricing" },
   { to: "/proof-of-work", key: "nav.proof" },
   { to: "/about", key: "nav.about" },
+  { to: "/book", key: "nav.book" },
   { to: "/contact", key: "nav.contact" },
+
 ] as const;
 
 export function Header() {
