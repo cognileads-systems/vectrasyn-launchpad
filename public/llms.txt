@@ -1,13 +1,13 @@
 # VectraSyn
 
-> Affordable, fast-turnaround digital services for small businesses: websites, apps, automation, and logo/branding. English-language site. Pricing available in INR (default), USD and AED.
+> Affordable, fast-turnaround digital services for small, medium and growing businesses: websites, apps, e-commerce, automation, and logo/branding. English-language site. Pricing available in INR (default), USD and AED.
 
 ## Site structure
 
 - / — Home: overview of the four core services, pricing preview, proof-of-work preview, contact CTA.
-- /pricing — Full service menu with list price and final price (50% off) in INR, USD or AED.
+- /pricing — Full service menu with list price and final price (50% off) in INR, USD or AED, plus a "What's included" detail per service.
 - /proof-of-work — Case study grid. All slots are placeholders marked "Case Study Coming Soon".
-- /about — Company story, how we work (Discover, Build, Launch, Support), FAQ.
+- /about — Company story, how we work (Discover, Build, Launch, Support), payment terms, FAQ.
 - /contact — Contact form, address placeholder, map placeholder, social icons.
 
 ## Core services
@@ -16,19 +16,37 @@
 - Apps — focused mobile or web apps.
 - Automation — simple pipelines connecting business tools.
 - Logo & Branding — original logo and brand files.
+- E-commerce / WooCommerce — custom-quoted online stores.
 
-## Pricing (list price -> final price, 50% off)
+## Pricing (list price -> final price, 50% off unless noted)
 
-- Website Only: INR 36,000 -> 18,000 | USD 700 -> 350 | AED 3,000 -> 1,500
+- Website Only: INR 36,000 -> 22,000 | USD 700 -> 350 | AED 3,000 -> 1,500
 - Simple Pipeline: INR 10,000 -> 5,000 | USD 200 -> 100 | AED 800 -> 400
 - Logo Design: INR 10,000 -> 5,000 | USD 200 -> 100 | AED 800 -> 400
 - GBP Setup: INR 12,000 -> 6,000 | USD 200 -> 100 | AED 800 -> 400
 - App Only: INR 70,000 -> 35,000 | USD 1,200 -> 600 | AED 5,000 -> 2,500
+- E-commerce / WooCommerce (custom quote): INR 60,000-1,60,000 -> starting from 30,000-80,000 | USD 2,400-6,000 -> 1,200-3,000 | AED 9,000-24,000 -> 4,500-12,000
 - Bundle 1: INR 50,000 -> 25,000 | USD 900 -> 450 | AED 3,800 -> 1,900
 - Bundle 2: INR 100,000 -> 50,000 | USD 1,800 -> 900 | AED 7,500 -> 3,750
 - Monthly Maintenance: INR 16,000 -> 8,000/mo | USD 300 -> 150/mo | AED 1,200 -> 600/mo
 
+## What's included (selected)
+
+- Website Only: standalone site, no automation included, page count pending confirmation, standard stack and hosting pending confirmation.
+- Simple Pipeline: one connection from site/social/form to Google Sheets or Airtable.
+- Bundle 1: website (4 pages) + automation (1 connection) + logo design + Google Business Profile setup; INR 3,000/yr domain and maintenance after year 1.
+- Bundle 2: everything in Bundle 1 + up to 2 extra pages + WhatsApp Business (catalogue, barcode, payment gateway) + SEO/AEO/GEO setup + GA4 analytics + 100 printed visiting cards with scan code (Hyderabad-exclusive) + custom add-ons on request.
+- E-commerce: product catalogue setup, payment gateway integration, store configuration; scoped per client.
+
+## Payment terms
+
+- Deposit plus milestone schedule; exact percentages confirmed at contract signing (pending final confirmation).
+- Deposit is non-refundable once the agreement is signed and the video consultation appointment is complete.
+- If VectraSyn cannot fulfil the agreed scope, the client is refunded 70% of the amount paid.
+- First 2 months after launch include free bug fixes.
+
 ## Notes
 
+- Brand mark is the "VectraSyn" text wordmark; no logo image is used.
 - No client testimonials, client names, or performance metrics are published yet.
-- Company address, social profile URLs and working-model (hybrid) details are pending confirmation.
+- Company address, social profile URLs, hosting stack and working-model (hybrid) details are pending confirmation.
