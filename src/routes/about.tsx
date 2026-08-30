@@ -72,7 +72,9 @@ function AboutPage() {
             <p>{t("about.story1")}</p>
             <p>{t("about.story2")}</p>
             <p>{t("about.story3")}</p>
+            <p>{t("about.story4")}</p>
           </div>
+
         </div>
       </section>
 
