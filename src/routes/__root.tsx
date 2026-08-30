@@ -14,6 +14,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "../components/site/Header";
 import { Footer } from "../components/site/Footer";
 import { Toaster } from "../components/ui/sonner";
+import { LanguageProvider } from "../i18n";
 
 function NotFoundComponent() {
   return (
@@ -124,8 +125,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
-  // lang/dir are set here so an Arabic (MSA) RTL locale can be switched on later
-  // without restructuring layout components (they use logical properties).
+  // SSR always emits en/ltr; LanguageProvider updates <html lang/dir> after hydration
+  // when the visitor has selected Arabic. Layout uses logical properties throughout.
   return (
     <html lang="en" dir="ltr">
       <head>
@@ -144,15 +145,17 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="flex min-h-screen flex-col">
-        <Header />
-        <main className="flex-1">
-          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-          <Outlet />
-        </main>
-        <Footer />
-      </div>
-      <Toaster />
+      <LanguageProvider>
+        <div className="flex min-h-screen flex-col">
+          <Header />
+          <main className="flex-1">
+            {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+            <Outlet />
+          </main>
+          <Footer />
+        </div>
+        <Toaster />
+      </LanguageProvider>
     </QueryClientProvider>
   );
 }

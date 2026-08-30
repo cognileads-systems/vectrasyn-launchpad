@@ -1,9 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ImageIcon } from "lucide-react";
 
-const TITLE = "Proof of Work — VectraSyn Case Studies";
-const DESCRIPTION =
-  "Case studies from VectraSyn projects across local services, retail, hospitality, clinics and more. Write-ups are in preparation.";
+import { translate, useT } from "../i18n";
+
+const TITLE = translate("en", "proof.meta.title");
+const DESCRIPTION = translate("en", "proof.meta.description");
 
 export const Route = createFileRoute("/proof-of-work")({
   head: () => ({
@@ -34,68 +35,63 @@ export const Route = createFileRoute("/proof-of-work")({
 });
 
 // Generic placeholder slots only — no client names, testimonials or results.
-const slots = [
-  { type: "Local services", note: "Website build" },
-  { type: "Retail & e-commerce", note: "Website + automation" },
-  { type: "Clinics & consultants", note: "Booking app" },
-  { type: "Hospitality", note: "Branding + website" },
-  { type: "Trades & contractors", note: "GBP setup" },
-  { type: "Education & training", note: "App build" },
-];
+const slots = [1, 2, 3, 4, 5, 6];
 
 function ProofOfWorkPage() {
+  const t = useT();
+
   return (
     <>
       <section className="warm-glow">
-        <div className="container-page py-16">
-          <p className="eyebrow">Proof of work</p>
-          <h1 className="mt-3 text-4xl font-bold sm:text-5xl">Case studies</h1>
-          <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-            We publish case studies only once the client has approved the details. These slots are
-            reserved for write-ups currently in preparation.
-          </p>
+        <div className="container-page py-16 text-start">
+          <p className="eyebrow">{t("proof.eyebrow")}</p>
+          <h1 className="mt-3 text-4xl font-bold sm:text-5xl">{t("proof.heading")}</h1>
+          <p className="mt-4 max-w-2xl text-lg text-muted-foreground">{t("proof.intro")}</p>
         </div>
       </section>
 
       <section className="pb-16" aria-labelledby="case-studies-heading">
-        <div className="container-page">
+        <div className="container-page text-start">
           <h2 id="case-studies-heading" className="sr-only">
-            Case study slots
+            {t("proof.slotsHeading")}
           </h2>
           <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {slots.map((slot) => (
-              <li key={slot.type} className="card-soft overflow-hidden">
-                <div
-                  className="flex h-44 items-center justify-center bg-sand"
-                  role="img"
-                  aria-label={`Placeholder image for an upcoming ${slot.type.toLowerCase()} case study`}
-                >
-                  <ImageIcon className="size-8 text-muted-foreground" aria-hidden="true" />
-                </div>
-                <div className="p-6">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="rounded-full bg-secondary/10 px-3 py-1 text-xs font-semibold text-secondary">
-                      {slot.type}
-                    </span>
-                    <span className="rounded-full bg-accent px-3 py-1 text-xs font-semibold text-accent-foreground">
-                      Coming soon
-                    </span>
+            {slots.map((n) => {
+              const type = t(`proof.slot${n}.type`);
+              const note = t(`proof.slot${n}.note`);
+              return (
+                <li key={n} className="card-soft overflow-hidden">
+                  <div
+                    className="flex h-44 items-center justify-center bg-sand"
+                    role="img"
+                    aria-label={t("proof.imageAlt", { type: type.toLowerCase() })}
+                  >
+                    <ImageIcon className="size-8 text-muted-foreground" aria-hidden="true" />
                   </div>
-                  <h3 className="mt-4 text-lg font-semibold">Case Study Coming Soon</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    {slot.note}. A short summary of the brief, what we built and how it was
-                    delivered will appear here once the write-up is published.
-                  </p>
-                </div>
-              </li>
-            ))}
+                  <div className="p-6">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="rounded-full bg-secondary/10 px-3 py-1 text-xs font-semibold text-secondary">
+                        {type}
+                      </span>
+                      <span className="rounded-full bg-accent px-3 py-1 text-xs font-semibold text-accent-foreground">
+                        {t("common.comingSoon")}
+                      </span>
+                    </div>
+                    <h3 className="mt-4 text-lg font-semibold">{t("proof.cardHeading")}</h3>
+                    <p className="mt-2 text-sm text-muted-foreground">
+                      {t("proof.cardBody", { note })}
+                    </p>
+                  </div>
+                </li>
+              );
+            })}
           </ul>
 
           <Link
             to="/contact"
             className="mt-10 inline-flex items-center rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground shadow-lift transition-transform hover:-translate-y-0.5"
           >
-            Talk to us about your project
+            {t("common.cta.talk")}
           </Link>
         </div>
       </section>
