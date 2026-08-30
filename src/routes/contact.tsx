@@ -48,12 +48,13 @@ function ContactPage() {
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const form = event.currentTarget;
     setSubmitting(true);
     // [PENDING — delivery] Wire this up to email or a database before launch.
     window.setTimeout(() => {
       setSubmitting(false);
       toast.success("Thanks — your message is noted. We'll be in touch shortly.");
-      event.currentTarget?.reset?.();
+      form.reset();
     }, 400);
   }
 
