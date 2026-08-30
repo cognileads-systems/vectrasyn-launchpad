@@ -15,6 +15,8 @@ import { Header } from "../components/site/Header";
 import { Footer } from "../components/site/Footer";
 import { Toaster } from "../components/ui/sonner";
 import { LanguageProvider } from "../i18n";
+import { CartProvider } from "../lib/cart";
+
 
 function NotFoundComponent() {
   return (
