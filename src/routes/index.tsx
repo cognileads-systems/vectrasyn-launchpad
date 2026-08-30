@@ -25,7 +25,7 @@ export const Route = createFileRoute("/")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Service",
-          serviceType: "Digital services for small businesses",
+          serviceType: "Digital services for small, medium and growing businesses",
           provider: { "@type": "Organization", name: "VectraSyn" },
           areaServed: ["IN", "AE", "US"],
           hasOfferCatalog: {

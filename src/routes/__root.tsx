@@ -85,7 +85,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "VectraSyn builds affordable, fast-turnaround websites, apps, automation and branding for small businesses.",
+          "VectraSyn builds affordable, fast-turnaround websites, apps, automation and branding for small, medium and growing businesses.",
       },
       { name: "author", content: "VectraSyn" },
       { property: "og:site_name", content: "VectraSyn" },
@@ -111,7 +111,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           name: "VectraSyn",
           url: "/",
           description:
-            "Affordable, fast-turnaround digital services for small businesses: websites, apps, automation and branding.",
+            "Affordable, fast-turnaround digital services for small, medium and growing businesses: websites, apps, automation and branding.",
           // [PENDING — confirm address, phone, and social profile URLs]
           areaServed: ["IN", "AE", "US"],
         }),
