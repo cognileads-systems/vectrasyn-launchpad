@@ -62,6 +62,10 @@ export function PricingTable() {
               <th scope="col" className="px-5 py-4 text-start text-sm font-semibold">
                 {t("pricingPage.col.final")}
               </th>
+              <th scope="col" className="px-5 py-4 text-start text-sm font-semibold">
+                <span className="sr-only">{t("cart.add")}</span>
+              </th>
+
             </tr>
           </thead>
           <tbody>
