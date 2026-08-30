@@ -58,7 +58,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     if (stored === "en" || stored === "ar") setLangState(stored);
   }, []);
 
-  const dir = lang === "ar" ? "rtl" : "ltr";
+  const dir: "ltr" | "rtl" = lang === "ar" ? "rtl" : "ltr";
 
   useEffect(() => {
     const root = document.documentElement;
