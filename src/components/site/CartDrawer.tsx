@@ -20,9 +20,10 @@ export function CartDrawer() {
       >
         <ShoppingBag className="size-5" />
         {count > 0 ? (
-          <span className="absolute -top-1 -inline-end-1 end-0 translate-x-1/2 -translate-y-1/2 rounded-full bg-primary px-1.5 text-xs font-semibold text-primary-foreground rtl:-translate-x-1/2">
+          <span className="absolute -top-1 -end-1 rounded-full bg-primary px-1.5 text-xs font-semibold text-primary-foreground">
             {count}
           </span>
+
         ) : null}
       </button>
 
