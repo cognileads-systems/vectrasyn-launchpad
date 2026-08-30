@@ -1,20 +1,24 @@
 import { useState } from "react";
 
 import { currencies, pricingRows, type CurrencyCode } from "../../data/pricing";
+import { useT } from "../../i18n";
 
 /**
  * Self-contained pricing table.
+ * The currency selector below is local state only — it is completely independent of
+ * the site-wide EN/AR language toggle, which lives in the header.
  * Intentionally renders NO discount banner or promo code — a promo banner can be
  * added as a sibling component above/below this one without editing this file.
  */
 export function PricingTable() {
   const [currency, setCurrency] = useState<CurrencyCode>("INR");
+  const t = useT();
 
   return (
     <div>
       <div
         role="group"
-        aria-label="Select currency"
+        aria-label={t("pricingPage.currencyLabel")}
         className="inline-flex rounded-full border border-border bg-surface p-1 shadow-soft"
       >
         {currencies.map((c) => {
@@ -25,7 +29,7 @@ export function PricingTable() {
               type="button"
               onClick={() => setCurrency(c.code)}
               aria-pressed={active}
-              title={c.symbolNote}
+              title={t(`pricingPage.currency.${c.code}`)}
               className={
                 "rounded-full px-4 py-1.5 text-sm font-semibold transition-colors " +
                 (active
@@ -42,18 +46,18 @@ export function PricingTable() {
       <div className="card-soft mt-6 overflow-x-auto">
         <table className="w-full min-w-[36rem] border-collapse text-start">
           <caption className="sr-only">
-            VectraSyn service pricing in {currency}: list price and final price.
+            {t("pricingPage.caption")} ({currency})
           </caption>
           <thead>
             <tr className="border-b border-border bg-sand">
               <th scope="col" className="px-5 py-4 text-start text-sm font-semibold">
-                Service
+                {t("pricingPage.col.service")}
               </th>
               <th scope="col" className="px-5 py-4 text-start text-sm font-semibold">
-                List price
+                {t("pricingPage.col.list")}
               </th>
               <th scope="col" className="px-5 py-4 text-start text-sm font-semibold">
-                Final price
+                {t("pricingPage.col.final")}
               </th>
             </tr>
           </thead>
@@ -63,21 +67,27 @@ export function PricingTable() {
               return (
                 <tr key={row.id} className="border-b border-border/70 last:border-0">
                   <th scope="row" className="px-5 py-5 text-start align-top font-normal">
-                    <span className="font-display text-base font-semibold">{row.service}</span>
+                    <span className="font-display text-base font-semibold">
+                      {t(`pricing.rows.${row.id}.service`)}
+                    </span>
                     <span className="mt-1 block max-w-md text-sm text-muted-foreground">
-                      {row.description}
+                      {t(`pricing.rows.${row.id}.description`)}
                     </span>
                   </th>
                   <td className="px-5 py-5 align-top text-muted-foreground">
                     <s>{price.list}</s>
-                    {row.recurring ? <span className="text-sm">/mo</span> : null}
+                    {row.recurring ? (
+                      <span className="text-sm">{t("pricingPage.perMonth")}</span>
+                    ) : null}
                   </td>
                   <td className="px-5 py-5 align-top">
                     <span className="font-display text-xl font-bold text-primary">
                       {price.final}
                     </span>
                     {row.recurring ? (
-                      <span className="text-sm font-semibold text-primary">/mo</span>
+                      <span className="text-sm font-semibold text-primary">
+                        {t("pricingPage.perMonth")}
+                      </span>
                     ) : null}
                   </td>
                 </tr>
