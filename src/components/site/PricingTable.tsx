@@ -124,6 +124,40 @@ export function PricingTable() {
                       </span>
                     ) : null}
                   </td>
+                  <td className="px-5 py-5 align-top">
+                    {(() => {
+                      const name = t(`pricing.rows.${row.id}.service`);
+                      const inCart = has(row.id);
+                      return (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            if (inCart) {
+                              setOpen(true);
+                              return;
+                            }
+                            add(row.id);
+                            toast.success(t("pricingPage.addedToCart", { name }));
+                          }}
+                          aria-pressed={inCart}
+                          className={
+                            "inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold transition-colors " +
+                            (inCart
+                              ? "bg-secondary/10 text-secondary"
+                              : "bg-primary text-primary-foreground hover:bg-primary/90")
+                          }
+                        >
+                          {inCart ? (
+                            <Check className="size-4" aria-hidden="true" />
+                          ) : (
+                            <Plus className="size-4" aria-hidden="true" />
+                          )}
+                          {inCart ? t("cart.added") : t("cart.add")}
+                        </button>
+                      );
+                    })()}
+                  </td>
+
                 </tr>
               );
             })}
