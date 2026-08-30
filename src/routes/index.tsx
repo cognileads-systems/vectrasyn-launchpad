@@ -3,10 +3,10 @@ import { ArrowRight, Globe, Smartphone, Workflow, PenTool } from "lucide-react";
 
 import heroImage from "../assets/hero-vectrasyn.jpg";
 import { pricingRows, services } from "../data/pricing";
+import { translate, useT } from "../i18n";
 
-const TITLE = "VectraSyn — Affordable Websites, Apps & Automation";
-const DESCRIPTION =
-  "Fast-turnaround websites, apps, automation and logo design for small businesses. Clear fixed prices in INR, USD and AED.";
+const TITLE = translate("en", "home.meta.title");
+const DESCRIPTION = translate("en", "home.meta.description");
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -33,7 +33,7 @@ export const Route = createFileRoute("/")({
             name: "VectraSyn services",
             itemListElement: services.map((s) => ({
               "@type": "Offer",
-              itemOffered: { "@type": "Service", name: s.title },
+              itemOffered: { "@type": "Service", name: translate("en", s.titleKey) },
             })),
           },
         }),
@@ -46,35 +46,33 @@ export const Route = createFileRoute("/")({
 const icons = [Globe, Smartphone, Workflow, PenTool];
 
 function HomePage() {
+  const t = useT();
   const teaser = pricingRows.slice(0, 4);
 
   return (
     <>
       <section className="warm-glow">
-        <div className="container-page grid items-center gap-12 py-16 lg:grid-cols-2 lg:py-24">
+        <div className="container-page grid items-center gap-12 py-16 text-start lg:grid-cols-2 lg:py-24">
           <div>
-            <p className="eyebrow">Small business. Big online presence.</p>
+            <p className="eyebrow">{t("home.hero.eyebrow")}</p>
             <h1 className="mt-4 text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
-              Websites, apps and automation —{" "}
-              <span className="text-primary">without the agency price tag.</span>
+              {t("home.hero.headingLead")}{" "}
+              <span className="text-primary">{t("home.hero.headingAccent")}</span>
             </h1>
-            <p className="mt-5 max-w-xl text-lg text-muted-foreground">
-              VectraSyn builds the digital basics small businesses actually need: a fast website, a
-              simple app, automation that saves hours, and a logo you're proud of. Fixed prices,
-              quick turnaround.
-            </p>
+            <p className="mt-5 max-w-xl text-lg text-muted-foreground">{t("home.hero.body")}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 to="/contact"
                 className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground shadow-lift transition-transform hover:-translate-y-0.5"
               >
-                Get a free quote <ArrowRight className="size-4" />
+                {t("common.cta.quote")}{" "}
+                <ArrowRight className="size-4 rtl:rotate-180" aria-hidden="true" />
               </Link>
               <Link
                 to="/pricing"
                 className="inline-flex items-center gap-2 rounded-full border border-secondary px-6 py-3 font-semibold text-secondary transition-colors hover:bg-secondary hover:text-secondary-foreground"
               >
-                See pricing
+                {t("common.cta.pricing")}
               </Link>
             </div>
           </div>
@@ -84,7 +82,7 @@ function HomePage() {
               src={heroImage}
               width={1200}
               height={900}
-              alt="Illustration of a laptop and phone showing a small business website and app connected by automation arrows"
+              alt={t("home.hero.imageAlt")}
               className="h-auto w-full"
               fetchPriority="high"
               decoding="async"
@@ -94,21 +92,21 @@ function HomePage() {
       </section>
 
       <section className="section-y" aria-labelledby="services-heading">
-        <div className="container-page">
-          <p className="eyebrow">What we do</p>
+        <div className="container-page text-start">
+          <p className="eyebrow">{t("home.services.eyebrow")}</p>
           <h2 id="services-heading" className="mt-3 text-3xl font-bold sm:text-4xl">
-            Four services, built to launch fast
+            {t("home.services.heading")}
           </h2>
           <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {services.map((service, i) => {
               const Icon = icons[i]!;
               return (
-                <li key={service.title} className="card-soft p-6">
+                <li key={service.id} className="card-soft p-6">
                   <span className="inline-flex size-11 items-center justify-center rounded-xl bg-accent text-accent-foreground">
                     <Icon className="size-5" aria-hidden="true" />
                   </span>
-                  <h3 className="mt-4 text-lg font-semibold">{service.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{service.description}</p>
+                  <h3 className="mt-4 text-lg font-semibold">{t(service.titleKey)}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">{t(service.descriptionKey)}</p>
                 </li>
               );
             })}
@@ -117,19 +115,16 @@ function HomePage() {
       </section>
 
       <section className="section-y bg-sand" aria-labelledby="pricing-preview-heading">
-        <div className="container-page">
-          <p className="eyebrow">Pricing preview</p>
+        <div className="container-page text-start">
+          <p className="eyebrow">{t("home.pricing.eyebrow")}</p>
           <h2 id="pricing-preview-heading" className="mt-3 text-3xl font-bold sm:text-4xl">
-            Straightforward, fixed prices
+            {t("home.pricing.heading")}
           </h2>
-          <p className="mt-3 max-w-2xl text-muted-foreground">
-            A snapshot of our most popular services. The full menu, plus USD and AED pricing, lives
-            on the pricing page.
-          </p>
+          <p className="mt-3 max-w-2xl text-muted-foreground">{t("home.pricing.body")}</p>
           <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {teaser.map((row) => (
               <li key={row.id} className="card-soft p-6">
-                <h3 className="text-base font-semibold">{row.service}</h3>
+                <h3 className="text-base font-semibold">{t(`pricing.rows.${row.id}.service`)}</h3>
                 <p className="mt-3">
                   <span className="text-sm text-muted-foreground line-through">
                     {row.prices.INR.list}
@@ -138,7 +133,9 @@ function HomePage() {
                     {row.prices.INR.final}
                   </span>
                 </p>
-                <p className="mt-2 text-sm text-muted-foreground">{row.description}</p>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  {t(`pricing.rows.${row.id}.description`)}
+                </p>
               </li>
             ))}
           </ul>
@@ -146,29 +143,27 @@ function HomePage() {
             to="/pricing"
             className="mt-8 inline-flex items-center gap-2 font-semibold text-secondary hover:underline"
           >
-            View full pricing <ArrowRight className="size-4" />
+            {t("common.cta.viewPricing")}{" "}
+            <ArrowRight className="size-4 rtl:rotate-180" aria-hidden="true" />
           </Link>
         </div>
       </section>
 
       <section className="section-y" aria-labelledby="proof-preview-heading">
-        <div className="container-page">
-          <p className="eyebrow">Proof of work</p>
+        <div className="container-page text-start">
+          <p className="eyebrow">{t("home.proof.eyebrow")}</p>
           <h2 id="proof-preview-heading" className="mt-3 text-3xl font-bold sm:text-4xl">
-            Case studies on the way
+            {t("home.proof.heading")}
           </h2>
-          <p className="mt-3 max-w-2xl text-muted-foreground">
-            We're preparing write-ups of recent builds. Until they're published, we'd rather show
-            nothing than make claims we can't back up.
-          </p>
+          <p className="mt-3 max-w-2xl text-muted-foreground">{t("home.proof.body")}</p>
           <div className="mt-8 grid gap-6 sm:grid-cols-3">
-            {["Local services", "Retail & e-commerce", "Clinics & consultants"].map((label) => (
-              <div key={label} className="card-soft p-6">
+            {["home.proof.card1", "home.proof.card2", "home.proof.card3"].map((key) => (
+              <div key={key} className="card-soft p-6">
                 <span className="rounded-full bg-accent px-3 py-1 text-xs font-semibold text-accent-foreground">
-                  Coming soon
+                  {t("common.comingSoon")}
                 </span>
-                <h3 className="mt-4 text-base font-semibold">{label}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">Case study coming soon.</p>
+                <h3 className="mt-4 text-base font-semibold">{t(key)}</h3>
+                <p className="mt-2 text-sm text-muted-foreground">{t("home.proof.cardBody")}</p>
               </div>
             ))}
           </div>
@@ -176,7 +171,8 @@ function HomePage() {
             to="/proof-of-work"
             className="mt-8 inline-flex items-center gap-2 font-semibold text-secondary hover:underline"
           >
-            See proof of work <ArrowRight className="size-4" />
+            {t("common.cta.viewProof")}{" "}
+            <ArrowRight className="size-4 rtl:rotate-180" aria-hidden="true" />
           </Link>
         </div>
       </section>
@@ -185,17 +181,15 @@ function HomePage() {
         <div className="container-page">
           <div className="warm-glow card-soft px-6 py-12 text-center sm:px-12">
             <h2 id="cta-heading" className="text-3xl font-bold sm:text-4xl">
-              Tell us what you need. We'll quote it today.
+              {t("home.cta.heading")}
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-              Send a few lines about your business and we'll come back with a fixed price and a
-              realistic timeline.
-            </p>
+            <p className="mx-auto mt-4 max-w-xl text-muted-foreground">{t("home.cta.body")}</p>
             <Link
               to="/contact"
               className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 font-semibold text-primary-foreground shadow-lift transition-transform hover:-translate-y-0.5"
             >
-              Start a project <ArrowRight className="size-4" />
+              {t("common.cta.start")}{" "}
+              <ArrowRight className="size-4 rtl:rotate-180" aria-hidden="true" />
             </Link>
           </div>
         </div>
