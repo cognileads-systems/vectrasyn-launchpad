@@ -11,8 +11,10 @@ import { translate, useT } from "../i18n";
 const TITLE = translate("en", "about.meta.title");
 const DESCRIPTION = translate("en", "about.meta.description");
 
-const faqIds = [1, 2, 3, 4, 5];
+const faqIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 const stepIds = [1, 2, 3, 4];
+const paymentIds = [1, 2, 3, 4];
+
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -70,7 +72,9 @@ function AboutPage() {
             <p>{t("about.story1")}</p>
             <p>{t("about.story2")}</p>
             <p>{t("about.story3")}</p>
+            <p>{t("about.story4")}</p>
           </div>
+
         </div>
       </section>
 
@@ -98,6 +102,31 @@ function AboutPage() {
           </p>
         </div>
       </section>
+
+      <section className="section-y" aria-labelledby="payment-terms-heading">
+        <div className="container-page max-w-3xl text-start">
+          <p className="eyebrow">{t("about.payment.eyebrow")}</p>
+          <h2 id="payment-terms-heading" className="mt-3 text-3xl font-bold sm:text-4xl">
+            {t("about.payment.heading")}
+          </h2>
+          <p className="mt-4 text-muted-foreground">{t("about.payment.intro")}</p>
+          <dl className="mt-8 space-y-5">
+            {paymentIds.map((n) => (
+              <div key={n} className="card-soft p-6">
+                <dt className="font-display text-base font-semibold">
+                  {t(`about.payment.item${n}.title`)}
+                </dt>
+                <dd className="mt-2 text-sm text-muted-foreground">
+                  {t(`about.payment.item${n}.body`)}
+                </dd>
+              </div>
+            ))}
+          </dl>
+          <p className="mt-6 text-sm font-medium text-secondary">{t("about.payment.note")}</p>
+        </div>
+      </section>
+
+
 
       <section className="section-y" aria-labelledby="faq-heading">
         <div className="container-page max-w-3xl text-start">

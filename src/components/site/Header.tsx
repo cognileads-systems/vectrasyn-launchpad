@@ -20,7 +20,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-border/70 bg-background/85 backdrop-blur">
       <div className="container-page grid h-16 grid-cols-[minmax(0,1fr)_auto] items-center gap-4">
-        {/* [PENDING — logo file] Placeholder text wordmark until the logo asset is supplied. */}
+        {/* Brand mark: "VectraSyn" text wordmark only — no logo image anywhere on the site. */}
         <Link
           to="/"
           className="truncate font-display text-xl font-bold tracking-tight text-primary"

@@ -64,6 +64,9 @@ export function PricingTable() {
           <tbody>
             {pricingRows.map((row) => {
               const price = row.prices[currency];
+              const includes = row.hasIncludes
+                ? t(`pricing.rows.${row.id}.includes`).split("\n")
+                : [];
               return (
                 <tr key={row.id} className="border-b border-border/70 last:border-0">
                   <th scope="row" className="px-5 py-5 text-start align-top font-normal">
@@ -73,6 +76,29 @@ export function PricingTable() {
                     <span className="mt-1 block max-w-md text-sm text-muted-foreground">
                       {t(`pricing.rows.${row.id}.description`)}
                     </span>
+                    {row.custom ? (
+                      <span className="mt-2 block max-w-md text-sm font-medium text-secondary">
+                        {t("pricingPage.customNote")}
+                      </span>
+                    ) : null}
+                    {includes.length > 0 ? (
+                      <details className="group mt-3 max-w-md">
+                        <summary className="cursor-pointer list-none text-sm font-semibold text-primary">
+                          {t("pricingPage.includesLabel")}
+                          <span aria-hidden="true" className="ms-1 inline-block group-open:hidden">
+                            +
+                          </span>
+                          <span aria-hidden="true" className="ms-1 hidden group-open:inline-block">
+                            −
+                          </span>
+                        </summary>
+                        <ul className="mt-2 list-disc space-y-1 ps-5 text-sm text-muted-foreground">
+                          {includes.map((line) => (
+                            <li key={line}>{line}</li>
+                          ))}
+                        </ul>
+                      </details>
+                    ) : null}
                   </th>
                   <td className="px-5 py-5 align-top text-muted-foreground">
                     <s>{price.list}</s>
@@ -81,6 +107,11 @@ export function PricingTable() {
                     ) : null}
                   </td>
                   <td className="px-5 py-5 align-top">
+                    {row.custom ? (
+                      <span className="mb-1 block text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                        {t("pricingPage.customQuote")} · {t("pricingPage.startingFrom")}
+                      </span>
+                    ) : null}
                     <span className="font-display text-xl font-bold text-primary">
                       {price.final}
                     </span>
@@ -94,6 +125,7 @@ export function PricingTable() {
               );
             })}
           </tbody>
+
         </table>
       </div>
     </div>
