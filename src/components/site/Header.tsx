@@ -52,6 +52,8 @@ export function Header() {
           </nav>
 
           <LanguageToggle className="ms-1" />
+          <CartDrawer />
+
 
           <button
             type="button"
