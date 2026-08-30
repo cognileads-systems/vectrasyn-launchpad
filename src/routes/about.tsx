@@ -11,8 +11,10 @@ import { translate, useT } from "../i18n";
 const TITLE = translate("en", "about.meta.title");
 const DESCRIPTION = translate("en", "about.meta.description");
 
-const faqIds = [1, 2, 3, 4, 5];
+const faqIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 const stepIds = [1, 2, 3, 4];
+const paymentIds = [1, 2, 3, 4];
+
 
 export const Route = createFileRoute("/about")({
   head: () => ({
