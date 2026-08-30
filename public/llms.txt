@@ -6,6 +6,7 @@
 
 - / — Home: overview of the four core services, pricing preview, proof-of-work preview, contact CTA.
 - /pricing — Full service menu with list price and final price (50% off) in INR, USD or AED, plus a "What's included" detail per service.
+- /book — Cart summary of selected services plus a consultation booking slot (Cal.com embed pending). No payment is taken.
 - /proof-of-work — Case study grid. All slots are placeholders marked "Case Study Coming Soon".
 - /about — Company story, how we work (Discover, Build, Launch, Support), payment terms, FAQ.
 - /contact — Contact form, address placeholder, map placeholder, social icons.
