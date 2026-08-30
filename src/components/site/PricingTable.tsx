@@ -1,18 +1,21 @@
-import { useState } from "react";
+import { Check, Plus } from "lucide-react";
+import { toast } from "sonner";
 
-import { currencies, pricingRows, type CurrencyCode } from "../../data/pricing";
+import { currencies, pricingRows } from "../../data/pricing";
 import { useT } from "../../i18n";
+import { useCart } from "../../lib/cart";
 
 /**
  * Self-contained pricing table.
- * The currency selector below is local state only — it is completely independent of
- * the site-wide EN/AR language toggle, which lives in the header.
+ * The currency selector below is shared with the cart only — it is completely independent
+ * of the site-wide EN/AR language toggle, which lives in the header.
  * Intentionally renders NO discount banner or promo code — a promo banner can be
  * added as a sibling component above/below this one without editing this file.
  */
 export function PricingTable() {
-  const [currency, setCurrency] = useState<CurrencyCode>("INR");
+  const { currency, setCurrency, has, add, setOpen } = useCart();
   const t = useT();
+
 
   return (
     <div>
@@ -59,6 +62,10 @@ export function PricingTable() {
               <th scope="col" className="px-5 py-4 text-start text-sm font-semibold">
                 {t("pricingPage.col.final")}
               </th>
+              <th scope="col" className="px-5 py-4 text-start text-sm font-semibold">
+                <span className="sr-only">{t("cart.add")}</span>
+              </th>
+
             </tr>
           </thead>
           <tbody>
@@ -121,6 +128,40 @@ export function PricingTable() {
                       </span>
                     ) : null}
                   </td>
+                  <td className="px-5 py-5 align-top">
+                    {(() => {
+                      const name = t(`pricing.rows.${row.id}.service`);
+                      const inCart = has(row.id);
+                      return (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            if (inCart) {
+                              setOpen(true);
+                              return;
+                            }
+                            add(row.id);
+                            toast.success(t("pricingPage.addedToCart", { name }));
+                          }}
+                          aria-pressed={inCart}
+                          className={
+                            "inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-4 py-2 text-sm font-semibold transition-colors " +
+                            (inCart
+                              ? "bg-secondary/10 text-secondary"
+                              : "bg-primary text-primary-foreground hover:bg-primary/90")
+                          }
+                        >
+                          {inCart ? (
+                            <Check className="size-4" aria-hidden="true" />
+                          ) : (
+                            <Plus className="size-4" aria-hidden="true" />
+                          )}
+                          {inCart ? t("cart.added") : t("cart.add")}
+                        </button>
+                      );
+                    })()}
+                  </td>
+
                 </tr>
               );
             })}

@@ -4,13 +4,17 @@ import { Menu, X } from "lucide-react";
 
 import { useT } from "../../i18n";
 import { LanguageToggle } from "./LanguageToggle";
+import { CartDrawer } from "./CartDrawer";
+
 
 const nav = [
   { to: "/", key: "nav.home" },
   { to: "/pricing", key: "nav.pricing" },
   { to: "/proof-of-work", key: "nav.proof" },
   { to: "/about", key: "nav.about" },
+  { to: "/book", key: "nav.book" },
   { to: "/contact", key: "nav.contact" },
+
 ] as const;
 
 export function Header() {
@@ -50,6 +54,8 @@ export function Header() {
           </nav>
 
           <LanguageToggle className="ms-1" />
+          <CartDrawer />
+
 
           <button
             type="button"
