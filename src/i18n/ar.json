@@ -89,6 +89,7 @@
   "pricingPage.heading": "The full service menu",
   "pricingPage.intro": "Every service below shows the standard list price alongside the final price you pay. Switch the currency to INR, USD or AED.",
   "pricingPage.tableHeading": "Service pricing table",
+  "pricingPage.foundingNote": "Founding Client Rate: the final prices below apply to our first 10 clients across each service.",
   "pricingPage.note": "Prices exclude any applicable taxes. Custom scopes are quoted individually.",
   "pricingPage.currencyLabel": "Select currency",
   "pricingPage.caption": "VectraSyn service pricing: list price and final price.",

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
 import { useT } from "../../i18n";
+import logoUrl from "../../assets/vectrasyn-logo.svg";
 import { LanguageToggle } from "./LanguageToggle";
 import { CartDrawer } from "./CartDrawer";
 
@@ -24,12 +25,8 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-border/70 bg-background/85 backdrop-blur">
       <div className="container-page grid h-16 grid-cols-[minmax(0,1fr)_auto] items-center gap-4">
-        {/* Brand mark: "VectraSyn" text wordmark only — no logo image anywhere on the site. */}
-        <Link
-          to="/"
-          className="truncate font-display text-xl font-bold tracking-tight text-primary"
-        >
-          {t("common.brand")}
+        <Link to="/" aria-label={t("common.brand")} className="flex shrink-0 items-center">
+          <img src={logoUrl} alt={t("common.brand")} className="h-9 w-auto" />
         </Link>
 
         <div className="flex items-center gap-2">

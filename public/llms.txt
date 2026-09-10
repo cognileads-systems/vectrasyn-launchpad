@@ -21,15 +21,17 @@
 
 ## Pricing (list price -> final price, 50% off unless noted)
 
-- Website Only: INR 36,000 -> 22,000 | USD 700 -> 350 | AED 3,000 -> 1,500
-- Simple Pipeline: INR 10,000 -> 5,000 | USD 200 -> 100 | AED 800 -> 400
-- Logo Design: INR 10,000 -> 5,000 | USD 200 -> 100 | AED 800 -> 400
-- GBP Setup: INR 12,000 -> 6,000 | USD 200 -> 100 | AED 800 -> 400
-- App Only: INR 70,000 -> 35,000 | USD 1,200 -> 600 | AED 5,000 -> 2,500
+Final prices are Founding Client Rates, fixed for the first 10 clients across each service.
+
+- Website Only: INR 36,000 -> 22,000 | USD 1,100 -> 550 | AED 4,000 -> 2,000
+- Simple Pipeline: INR 10,000 -> 5,000 | USD 300 -> 150 | AED 1,100 -> 550
+- Logo Design: INR 10,000 -> 5,000 | USD 400 -> 200 | AED 1,500 -> 750
+- GBP Setup: INR 12,000 -> 6,000 | USD 300 -> 150 | AED 1,100 -> 550
+- App Only: INR 70,000 -> 35,000 | USD 2,400 -> 1,200 | AED 8,800 -> 4,400
 - E-commerce / WooCommerce (custom quote): INR 60,000-1,60,000 -> starting from 30,000-80,000 | USD 2,400-6,000 -> 1,200-3,000 | AED 9,000-24,000 -> 4,500-12,000
-- Bundle 1: INR 50,000 -> 25,000 | USD 900 -> 450 | AED 3,800 -> 1,900
-- Bundle 2: INR 100,000 -> 50,000 | USD 1,800 -> 900 | AED 7,500 -> 3,750
-- Monthly Maintenance: INR 16,000 -> 8,000/mo | USD 300 -> 150/mo | AED 1,200 -> 600/mo
+- Bundle 1: INR 50,000 -> 25,000 | USD 1,400 -> 700 | AED 5,200 -> 2,600
+- Bundle 2: INR 100,000 -> 50,000 | USD 2,200 -> 1,100 | AED 8,200 -> 4,200
+- Monthly Maintenance: INR 16,000 -> 8,000/mo | USD 360 -> 180/mo | AED 1,300 -> 650/mo
 
 ## What's included (selected)
 

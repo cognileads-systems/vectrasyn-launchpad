@@ -46,6 +46,8 @@ export function PricingTable() {
         })}
       </div>
 
+      <p className="mt-4 text-sm text-muted-foreground">{t("pricingPage.foundingNote")}</p>
+
       <div className="card-soft mt-6 overflow-x-auto">
         <table className="w-full min-w-[36rem] border-collapse text-start">
           <caption className="sr-only">
