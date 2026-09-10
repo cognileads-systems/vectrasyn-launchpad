@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 
 import { useT } from "../../i18n";
+import logoUrl from "../../assets/vectrasyn-logo.svg";
 
 const serviceKeys = [
   "services.websites.title",
@@ -23,7 +24,7 @@ export function Footer() {
     <footer className="mt-8 border-t border-border bg-sand">
       <div className="container-page grid gap-10 py-12 text-start sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <p className="font-display text-lg font-bold text-primary">{t("common.brand")}</p>
+          <img src={logoUrl} alt={t("common.brand")} className="h-8 w-auto" />
           <p className="mt-2 max-w-xs text-sm text-muted-foreground">{t("common.tagline")}</p>
         </div>
 
