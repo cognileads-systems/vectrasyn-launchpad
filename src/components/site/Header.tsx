@@ -26,7 +26,7 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b border-border/70 bg-background/85 backdrop-blur">
       <div className="container-page grid h-16 grid-cols-[minmax(0,1fr)_auto] items-center gap-4">
         <Link to="/" aria-label={t("common.brand")} className="flex shrink-0 items-center">
-          <img src={logoUrl} alt={t("common.brand")} className="h-12 w-auto" />
+          <img src={logoUrl} alt={t("common.brand")} className="h-14 w-auto sm:h-[58px]" />
         </Link>
 
         <div className="flex items-center gap-2">
