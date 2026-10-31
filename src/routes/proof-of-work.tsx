@@ -14,6 +14,7 @@ export const Route = createFileRoute("/proof-of-work")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
       { property: "og:url", content: "/proof-of-work" },
     ],
     links: [{ rel: "canonical", href: "/proof-of-work" }],

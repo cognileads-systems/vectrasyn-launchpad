@@ -115,6 +115,11 @@
   --sidebar-ring: oklch(0.705 0.191 47.6);
 }
 
+html[lang="ar"] {
+  --font-sans: "IBM Plex Sans Arabic", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "IBM Plex Sans Arabic", ui-sans-serif, system-ui, sans-serif;
+}
+
 @layer base {
   * {
     border-color: var(--color-border);
