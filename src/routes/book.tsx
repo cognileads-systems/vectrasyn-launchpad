@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { CalendarClock, CreditCard, ListChecks } from "lucide-react";
+import { CalendarClock, CreditCard, ExternalLink, ListChecks } from "lucide-react";
 
 import { CartSummary } from "../components/site/CartSummary";
+import { abs, CAL_URL } from "../lib/site";
 import { translate, useT } from "../i18n";
 
 const TITLE = translate("en", "book.meta.title");
@@ -15,10 +16,10 @@ export const Route = createFileRoute("/book")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "/book" },
+      { property: "og:url", content: abs("/book") },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/book" }],
+    links: [{ rel: "canonical", href: abs("/book") }],
     scripts: [
       {
         type: "application/ld+json",
@@ -26,8 +27,8 @@ export const Route = createFileRoute("/book")({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "/" },
-            { "@type": "ListItem", position: 2, name: "Book a consultation", item: "/book" },
+            { "@type": "ListItem", position: 1, name: "Home", item: abs("/") },
+            { "@type": "ListItem", position: 2, name: "Book a consultation", item: abs("/book") },
           ],
         }),
       },
@@ -83,17 +84,22 @@ function BookPage() {
               <h2 id="book-widget-heading" className="font-display text-lg font-bold">
                 {t("book.widget.heading")}
               </h2>
-              {/*
-                [PENDING — Cal.com booking link]
-                Swap this placeholder for the Cal.com embed once the account exists, e.g.
-                <Cal calLink="vectrasyn/consultation" /> from @calcom/embed-react, or an
-                <iframe src="https://cal.com/vectrasyn/consultation" /> fallback.
-              */}
-              <div className="mt-4 flex min-h-[24rem] flex-col items-center justify-center rounded-xl border border-dashed border-border bg-sand p-8 text-center">
-                <CalendarClock className="size-8 text-primary" aria-hidden="true" />
-                <p className="mt-3 font-medium">{t("book.widget.placeholder")}</p>
-                <p className="mt-1 text-sm text-muted-foreground">{t("book.widget.pending")}</p>
+              <div className="mt-4 overflow-hidden rounded-xl border border-border bg-card">
+                <iframe
+                  src={`${CAL_URL}?embed=true&theme=light`}
+                  title={t("book.widget.iframeTitle")}
+                  loading="lazy"
+                  className="block h-[40rem] w-full"
+                />
               </div>
+              <a
+                href={CAL_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
+              >
+                {t("book.widget.open")} <ExternalLink className="size-4" aria-hidden="true" />
+              </a>
             </div>
 
             <div className="card-soft p-6" aria-labelledby="book-payment-heading">

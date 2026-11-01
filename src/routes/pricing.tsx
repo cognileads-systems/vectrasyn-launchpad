@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { PricingTable } from "../components/site/PricingTable";
 import { pricingRows } from "../data/pricing";
+import { abs } from "../lib/site";
 import { translate, useT } from "../i18n";
 
 const TITLE = translate("en", "pricingPage.meta.title");
@@ -19,9 +20,9 @@ export const Route = createFileRoute("/pricing")({
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: "/pricing" },
+      { property: "og:url", content: abs("/pricing") },
     ],
-    links: [{ rel: "canonical", href: "/pricing" }],
+    links: [{ rel: "canonical", href: abs("/pricing") }],
     scripts: [
       {
         type: "application/ld+json",
@@ -54,8 +55,8 @@ export const Route = createFileRoute("/pricing")({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "/" },
-            { "@type": "ListItem", position: 2, name: "Pricing", item: "/pricing" },
+            { "@type": "ListItem", position: 1, name: "Home", item: abs("/") },
+            { "@type": "ListItem", position: 2, name: "Pricing", item: abs("/pricing") },
           ],
         }),
       },
@@ -86,7 +87,7 @@ function PricingPage() {
           <PricingTable />
           <p className="mt-6 text-sm text-muted-foreground">{t("pricingPage.note")}</p>
           <Link
-            to="/contact"
+            to="/book"
             className="mt-8 inline-flex items-center rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground shadow-lift transition-transform hover:-translate-y-0.5"
           >
             {t("common.cta.requestQuote")}

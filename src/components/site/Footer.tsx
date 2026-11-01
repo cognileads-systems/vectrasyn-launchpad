@@ -1,13 +1,20 @@
 import { Link } from "@tanstack/react-router";
+import { Facebook, Instagram } from "lucide-react";
 
 import { useT } from "../../i18n";
 import logoUrl from "../../assets/vectrasyn-logo.svg";
+import { FACEBOOK_URL, INSTAGRAM_URL } from "../../lib/site";
 
 const serviceKeys = [
   "services.websites.title",
   "services.apps.title",
   "services.automation.title",
   "services.branding.title",
+] as const;
+
+const socials = [
+  { key: "contact.social.instagram", Icon: Instagram, href: INSTAGRAM_URL },
+  { key: "contact.social.facebook", Icon: Facebook, href: FACEBOOK_URL },
 ] as const;
 
 const pages = [
@@ -54,8 +61,24 @@ export function Footer() {
           <h2 className="font-display text-sm font-semibold">{t("footer.contactHeading")}</h2>
           {/* [PENDING — contact details] */}
           <p className="mt-3 text-sm text-muted-foreground">{t("footer.contactPending")}</p>
+          <ul className="mt-4 flex gap-2">
+            {socials.map(({ key, Icon, href }) => (
+              <li key={key}>
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={t("contact.social.open", { label: t(key) })}
+                  title={t(key)}
+                  className="inline-flex size-9 items-center justify-center rounded-full border border-border bg-background text-secondary transition-colors hover:border-primary hover:text-primary"
+                >
+                  <Icon className="size-4" aria-hidden="true" />
+                </a>
+              </li>
+            ))}
+          </ul>
           <Link
-            to="/contact"
+            to="/book"
             className="mt-4 inline-flex items-center rounded-full bg-secondary px-4 py-2 text-sm font-semibold text-secondary-foreground"
           >
             {t("common.cta.start")}

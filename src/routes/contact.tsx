@@ -3,6 +3,7 @@ import { useState, type FormEvent } from "react";
 import { Facebook, Instagram, Linkedin, MapPin, MessageCircle } from "lucide-react";
 import { toast } from "sonner";
 
+import { abs, FACEBOOK_URL, INSTAGRAM_URL } from "../lib/site";
 import { translate, useT } from "../i18n";
 
 const TITLE = translate("en", "contact.meta.title");
@@ -17,9 +18,9 @@ export const Route = createFileRoute("/contact")({
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: "/contact" },
+      { property: "og:url", content: abs("/contact") },
     ],
-    links: [{ rel: "canonical", href: "/contact" }],
+    links: [{ rel: "canonical", href: abs("/contact") }],
     scripts: [
       {
         type: "application/ld+json",
@@ -27,8 +28,8 @@ export const Route = createFileRoute("/contact")({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "/" },
-            { "@type": "ListItem", position: 2, name: "Contact", item: "/contact" },
+            { "@type": "ListItem", position: 1, name: "Home", item: abs("/") },
+            { "@type": "ListItem", position: 2, name: "Contact", item: abs("/contact") },
           ],
         }),
       },
@@ -37,12 +38,12 @@ export const Route = createFileRoute("/contact")({
   component: ContactPage,
 });
 
-// [PENDING — social URLs] Icons are intentionally not linked yet.
+// A null href means the real URL does not exist yet: the icon stays unlinked and marked pending.
 const socials = [
-  { key: "contact.social.instagram", Icon: Instagram },
-  { key: "contact.social.linkedin", Icon: Linkedin },
-  { key: "contact.social.facebook", Icon: Facebook },
-  { key: "contact.social.whatsapp", Icon: MessageCircle },
+  { key: "contact.social.instagram", Icon: Instagram, href: INSTAGRAM_URL as string | null },
+  { key: "contact.social.linkedin", Icon: Linkedin, href: null }, // [PENDING — LinkedIn URL]
+  { key: "contact.social.facebook", Icon: Facebook, href: FACEBOOK_URL as string | null },
+  { key: "contact.social.whatsapp", Icon: MessageCircle, href: null }, // [PENDING — WhatsApp]
 ];
 
 function ContactPage() {
@@ -150,16 +151,34 @@ function ContactPage() {
             <div className="card-soft p-6">
               <h2 className="text-lg font-semibold">{t("contact.social.heading")}</h2>
               <ul className="mt-4 flex gap-3">
-                {socials.map(({ key, Icon }) => {
-                  const pending = t("contact.social.pending", { label: t(key) });
+                {socials.map(({ key, Icon, href }) => {
+                  const label = t(key);
+                  const iconClass =
+                    "inline-flex size-11 items-center justify-center rounded-full border border-border bg-background text-secondary";
+                  if (href) {
+                    return (
+                      <li key={key}>
+                        <a
+                          href={href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={t("contact.social.open", { label })}
+                          title={label}
+                          className={`${iconClass} transition-colors hover:border-primary hover:text-primary`}
+                        >
+                          <Icon className="size-5" aria-hidden="true" />
+                        </a>
+                      </li>
+                    );
+                  }
+                  const pending = t("contact.social.pending", { label });
                   return (
                     <li key={key}>
-                      {/* [PENDING — social URLs] Replace this span with an anchor once live. */}
                       <span
                         role="img"
                         aria-label={pending}
                         title={pending}
-                        className="inline-flex size-11 items-center justify-center rounded-full border border-border bg-background text-secondary"
+                        className={`${iconClass} opacity-50`}
                       >
                         <Icon className="size-5" aria-hidden="true" />
                       </span>

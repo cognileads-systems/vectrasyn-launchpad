@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ProofThumb } from "../components/site/Visuals";
+import { abs } from "../lib/site";
 import { translate, useT } from "../i18n";
 
 const TITLE = translate("en", "proof.meta.title");
@@ -14,9 +15,9 @@ export const Route = createFileRoute("/proof-of-work")({
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: "/proof-of-work" },
+      { property: "og:url", content: abs("/proof-of-work") },
     ],
-    links: [{ rel: "canonical", href: "/proof-of-work" }],
+    links: [{ rel: "canonical", href: abs("/proof-of-work") }],
     scripts: [
       {
         type: "application/ld+json",
@@ -24,8 +25,13 @@ export const Route = createFileRoute("/proof-of-work")({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "/" },
-            { "@type": "ListItem", position: 2, name: "Proof of Work", item: "/proof-of-work" },
+            { "@type": "ListItem", position: 1, name: "Home", item: abs("/") },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "Proof of Work",
+              item: abs("/proof-of-work"),
+            },
           ],
         }),
       },
@@ -85,7 +91,7 @@ function ProofOfWorkPage() {
           </ul>
 
           <Link
-            to="/contact"
+            to="/book"
             className="mt-10 inline-flex items-center rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground shadow-lift transition-transform hover:-translate-y-0.5"
           >
             {t("common.cta.talk")}

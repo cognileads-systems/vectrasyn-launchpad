@@ -3,6 +3,7 @@ import { ArrowRight, Globe, Smartphone, Workflow, PenTool } from "lucide-react";
 
 import { HeroVisual, ProofThumb } from "../components/site/Visuals";
 import { pricingRows, services } from "../data/pricing";
+import { abs } from "../lib/site";
 import { translate, useT } from "../i18n";
 
 const TITLE = translate("en", "home.meta.title");
@@ -17,9 +18,9 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: abs("/") },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: abs("/") }],
     scripts: [
       {
         type: "application/ld+json",
@@ -65,7 +66,7 @@ function HomePage() {
             <p className="mt-5 max-w-xl text-lg text-muted-foreground">{t("home.hero.body")}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
-                to="/contact"
+                to="/book"
                 className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 font-semibold text-primary-foreground shadow-lift transition-transform hover:-translate-y-0.5"
               >
                 {t("common.cta.quote")}{" "}
@@ -193,7 +194,7 @@ function HomePage() {
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-muted-foreground">{t("home.cta.body")}</p>
             <Link
-              to="/contact"
+              to="/book"
               className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 font-semibold text-primary-foreground shadow-lift transition-transform hover:-translate-y-0.5"
             >
               {t("common.cta.start")}{" "}

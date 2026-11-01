@@ -7,7 +7,6 @@ import logoUrl from "../../assets/vectrasyn-logo.svg";
 import { LanguageToggle } from "./LanguageToggle";
 import { CartDrawer } from "./CartDrawer";
 
-
 const nav = [
   { to: "/", key: "nav.home" },
   { to: "/pricing", key: "nav.pricing" },
@@ -15,7 +14,6 @@ const nav = [
   { to: "/about", key: "nav.about" },
   { to: "/book", key: "nav.book" },
   { to: "/contact", key: "nav.contact" },
-
 ] as const;
 
 export function Header() {
@@ -43,7 +41,7 @@ export function Header() {
               </Link>
             ))}
             <Link
-              to="/contact"
+              to="/book"
               className="ms-2 inline-flex items-center rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-soft transition-transform hover:-translate-y-0.5"
             >
               {t("common.cta.quoteShort")}
@@ -52,7 +50,6 @@ export function Header() {
 
           <LanguageToggle className="ms-1" />
           <CartDrawer />
-
 
           <button
             type="button"
@@ -67,7 +64,10 @@ export function Header() {
       </div>
 
       {open ? (
-        <nav aria-label={t("nav.mobileLabel")} className="border-t border-border bg-background md:hidden">
+        <nav
+          aria-label={t("nav.mobileLabel")}
+          className="border-t border-border bg-background md:hidden"
+        >
           <ul className="container-page flex flex-col py-2">
             {nav.map((item) => (
               <li key={item.to}>
