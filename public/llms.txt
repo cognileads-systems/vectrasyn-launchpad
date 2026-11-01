@@ -1,15 +1,21 @@
 # VectraSyn
 
-> Affordable, fast-turnaround digital services for small, medium and growing businesses: websites, apps, e-commerce, automation, and logo/branding. English-language site. Pricing available in INR (default), USD and AED.
+> Affordable, fast-turnaround digital services for small, medium and growing businesses: websites, apps, e-commerce, automation, and logo/branding. Website: https://vectrasyn.com. The site is available in English and Arabic (Modern Standard Arabic, right-to-left). Pricing is shown in INR (default), USD and AED.
 
 ## Site structure
 
-- / — Home: overview of the four core services, pricing preview, proof-of-work preview, contact CTA.
-- /pricing — Full service menu with list price and final price (50% off) in INR, USD or AED, plus a "What's included" detail per service.
-- /book — Cart summary of selected services plus a consultation booking slot (Cal.com embed pending). No payment is taken.
-- /proof-of-work — Case study grid. All slots are placeholders marked "Case Study Coming Soon".
-- /about — Company story, how we work (Discover, Build, Launch, Support), payment terms, FAQ.
-- /contact — Contact form, address placeholder, map placeholder, social icons.
+- https://vectrasyn.com/ — Home: overview of the four core services, pricing preview, proof-of-work preview, booking CTA.
+- https://vectrasyn.com/pricing — Full service menu with list price and final price (50% off) in INR, USD or AED, plus a "What's included" detail per service.
+- https://vectrasyn.com/book — Selected services summary plus a video consultation booking calendar (Cal.com). No payment is taken on the site.
+- https://vectrasyn.com/proof-of-work — Case study grid. All slots are placeholders marked "Case study coming soon".
+- https://vectrasyn.com/about — Company story, how we work, payment terms, FAQ.
+- https://vectrasyn.com/contact — Contact form and social links.
+
+## Booking and social
+
+- Book a video consultation: https://cal.com/vectrasyn/consultation
+- Facebook: https://www.facebook.com/vectrasyn
+- Instagram: https://www.instagram.com/vectrasyngroup
 
 ## Core services
 
@@ -35,7 +41,7 @@ Final prices are Founding Client Rates, fixed for the first 10 clients across ea
 
 ## What's included (selected)
 
-- Website Only: standalone site, no automation included, page count pending confirmation, standard stack and hosting pending confirmation.
+- Website Only: standalone website build (4 pages), no automation included; mobile-friendly responsive layout; built on a modern React-based stack with domain and hosting managed through Cloudflare; launch, testing and handover included.
 - Simple Pipeline: one connection from site/social/form to Google Sheets or Airtable.
 - Bundle 1: website (4 pages) + automation (1 connection) + logo design + Google Business Profile setup; INR 3,000/yr domain and maintenance after year 1.
 - Bundle 2: everything in Bundle 1 + up to 2 extra pages + WhatsApp Business (catalogue, barcode, payment gateway) + SEO/AEO/GEO setup + GA4 analytics + 100 printed visiting cards with scan code (Hyderabad-exclusive) + custom add-ons on request.
@@ -43,13 +49,13 @@ Final prices are Founding Client Rates, fixed for the first 10 clients across ea
 
 ## Payment terms
 
-- Deposit plus milestone schedule; exact percentages confirmed at contract signing (pending final confirmation).
-- Deposit is non-refundable once the agreement is signed and the video consultation appointment is complete.
+- 30% deposit on signing, 40% at the mid-build milestone, 30% on completion and handover.
+- The deposit is non-refundable once the agreement is signed and the video consultation appointment is complete.
 - If VectraSyn cannot fulfil the agreed scope, the client is refunded 70% of the amount paid.
-- First 2 months after launch include free bug fixes.
+- The first 2 months after launch include free bug fixes.
 
 ## Notes
 
-- Brand mark is the "VectraSyn" text wordmark; no logo image is used.
+- The brand mark is the VectraSyn icon with the "VectraSyn" wordmark.
 - No client testimonials, client names, or performance metrics are published yet.
-- Company address, social profile URLs, hosting stack and working-model (hybrid) details are pending confirmation.
+- A company address, phone number, LinkedIn page and WhatsApp number are not published yet.

@@ -6,6 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "../components/ui/accordion";
+import { abs } from "../lib/site";
 import { translate, useT } from "../i18n";
 
 const TITLE = translate("en", "about.meta.title");
@@ -14,7 +15,6 @@ const DESCRIPTION = translate("en", "about.meta.description");
 const faqIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 const stepIds = [1, 2, 3, 4];
 const paymentIds = [1, 2, 3, 4];
-
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -25,9 +25,9 @@ export const Route = createFileRoute("/about")({
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { property: "og:url", content: "/about" },
+      { property: "og:url", content: abs("/about") },
     ],
-    links: [{ rel: "canonical", href: "/about" }],
+    links: [{ rel: "canonical", href: abs("/about") }],
     scripts: [
       {
         type: "application/ld+json",
@@ -50,8 +50,8 @@ export const Route = createFileRoute("/about")({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
           itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "/" },
-            { "@type": "ListItem", position: 2, name: "About", item: "/about" },
+            { "@type": "ListItem", position: 1, name: "Home", item: abs("/") },
+            { "@type": "ListItem", position: 2, name: "About", item: abs("/about") },
           ],
         }),
       },
@@ -75,7 +75,6 @@ function AboutPage() {
             <p>{t("about.story3")}</p>
             <p>{t("about.story4")}</p>
           </div>
-
         </div>
       </section>
 
@@ -126,8 +125,6 @@ function AboutPage() {
           <p className="mt-6 text-sm font-medium text-secondary">{t("about.payment.note")}</p>
         </div>
       </section>
-
-
 
       <section className="section-y" aria-labelledby="faq-heading">
         <div className="container-page max-w-3xl text-start">

@@ -16,7 +16,7 @@ import { Footer } from "../components/site/Footer";
 import { Toaster } from "../components/ui/sonner";
 import { LanguageProvider } from "../i18n";
 import { CartProvider } from "../lib/cart";
-
+import { FACEBOOK_URL, INSTAGRAM_URL, SITE_URL } from "../lib/site";
 
 function NotFoundComponent() {
   return (
@@ -111,10 +111,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "@context": "https://schema.org",
           "@type": "Organization",
           name: "VectraSyn",
-          url: "/",
+          url: `${SITE_URL}/`,
+          logo: `${SITE_URL}/vectrasyn-logo.svg`,
+          sameAs: [FACEBOOK_URL, INSTAGRAM_URL],
           description:
             "Affordable, fast-turnaround digital services for small, medium and growing businesses: websites, apps, automation and branding.",
-          // [PENDING — confirm address, phone, and social profile URLs]
+          // [PENDING — address, phone and LinkedIn URL are not published yet]
           areaServed: ["IN", "AE", "US"],
         }),
       },
@@ -160,7 +162,6 @@ function RootComponent() {
           <Toaster />
         </CartProvider>
       </LanguageProvider>
-
     </QueryClientProvider>
   );
 }
