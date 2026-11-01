@@ -97,7 +97,8 @@
   --sand: oklch(0.962 0.014 92);
 
   --shadow-soft: 0 1px 2px oklch(0.226 0.003 285 / 0.04), 0 8px 24px oklch(0.226 0.003 285 / 0.05);
-  --shadow-lift: 0 2px 6px oklch(0.226 0.003 285 / 0.06), 0 18px 40px oklch(0.705 0.191 47.6 / 0.12);
+  --shadow-lift:
+    0 2px 6px oklch(0.226 0.003 285 / 0.06), 0 18px 40px oklch(0.705 0.191 47.6 / 0.12);
 
   --chart-1: oklch(0.705 0.191 47.6);
   --chart-2: oklch(0.578 0.099 180.5);
@@ -162,19 +163,189 @@ html[lang="ar"] {
 }
 
 @utility eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 0.75rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-secondary);
+
+  /* small orange-to-teal rule before every eyebrow label */
+  &::before {
+    content: "";
+    inline-size: 1.5rem;
+    block-size: 3px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  }
 }
 
+html[lang="ar"] .eyebrow::before {
+  background: linear-gradient(270deg, var(--color-primary), var(--color-secondary));
+}
+
+/* Same two warm glows as before, plus a faint dot grid for a "blueprint" feel. */
 @utility warm-glow {
+  background-image:
+    radial-gradient(60% 70% at 15% 10%, oklch(0.705 0.191 47.6 / 0.14), transparent 70%),
+    radial-gradient(50% 60% at 90% 0%, oklch(0.578 0.099 180.5 / 0.12), transparent 70%),
+    radial-gradient(circle at 1px 1px, oklch(0.226 0.003 285 / 0.09) 1px, transparent 0);
+  background-size:
+    auto,
+    auto,
+    24px 24px;
+}
+
+/* Dot grid only, for plain sections (sand background keeps its colour). */
+@utility bg-dots {
   background-image: radial-gradient(
-      60% 70% at 15% 10%,
-      oklch(0.705 0.191 47.6 / 0.14),
-      transparent 70%
-    ),
-    radial-gradient(50% 60% at 90% 0%, oklch(0.578 0.099 180.5 / 0.12), transparent 70%);
+    circle at 1px 1px,
+    oklch(0.226 0.003 285 / 0.08) 1px,
+    transparent 0
+  );
+  background-size: 24px 24px;
+}
+
+/* Cards that rise and pick up an orange edge on hover or keyboard focus. */
+@utility card-lift {
+  position: relative;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+
+  &:hover,
+  &:focus-within {
+    border-color: color-mix(in oklab, var(--color-primary) 40%, var(--color-border));
+    box-shadow: var(--shadow-lift);
+  }
+
+  /* thin orange-to-teal line along the top edge */
+  &::after {
+    content: "";
+    position: absolute;
+    inset-inline: 1.25rem;
+    inset-block-start: -1px;
+    block-size: 2px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  &:hover::after,
+  &:focus-within::after {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .card-lift:hover {
+    transform: translateY(-4px);
+  }
+}
+
+/* Large soft colour blobs behind the hero. Decorative only. */
+@utility hero-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+/* ---------- motion for the hero visual (all off for reduced motion) ---------- */
+
+.vs-check {
+  stroke-dasharray: 18;
+  stroke-dashoffset: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes vs-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-9px);
+    }
+  }
+  @keyframes vs-dash {
+    to {
+      stroke-dashoffset: -48;
+    }
+  }
+  @keyframes vs-sweep {
+    0%,
+    55% {
+      transform: translateX(0) skewX(-14deg);
+    }
+    100% {
+      transform: translateX(560px) skewX(-14deg);
+    }
+  }
+  @keyframes vs-pulse {
+    0%,
+    70%,
+    100% {
+      transform: scale(1);
+    }
+    35% {
+      transform: scale(1.1);
+    }
+  }
+  @keyframes vs-tick {
+    0%,
+    8% {
+      stroke-dashoffset: 18;
+    }
+    22%,
+    88% {
+      stroke-dashoffset: 0;
+    }
+    100% {
+      stroke-dashoffset: 18;
+    }
+  }
+
+  .vs-float {
+    animation: vs-float 6s ease-in-out infinite;
+  }
+  .vs-float-slow {
+    animation: vs-float 8s ease-in-out infinite;
+  }
+  .vs-float-fast {
+    animation: vs-float 5s ease-in-out infinite 0.6s;
+  }
+  .vs-dash {
+    animation: vs-dash 1.6s linear infinite;
+  }
+  .vs-sweep {
+    animation: vs-sweep 7s ease-in-out infinite;
+  }
+  .vs-pulse-1,
+  .vs-pulse-2,
+  .vs-pulse-3 {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: vs-pulse 4.5s ease-in-out infinite;
+  }
+  .vs-pulse-2 {
+    animation-delay: 0.7s;
+  }
+  .vs-pulse-3 {
+    animation-delay: 1.4s;
+  }
+  .vs-check {
+    animation: vs-tick 6s ease-in-out infinite;
+  }
+  .vs-check-2 {
+    animation-delay: 1s;
+  }
+  .vs-check-3 {
+    animation-delay: 2s;
+  }
 }

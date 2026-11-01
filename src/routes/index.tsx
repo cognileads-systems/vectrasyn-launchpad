@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Globe, Smartphone, Workflow, PenTool } from "lucide-react";
 
-import heroImage from "../assets/hero-vectrasyn.jpg";
+import { HeroVisual, ProofThumb } from "../components/site/Visuals";
 import { pricingRows, services } from "../data/pricing";
 import { translate, useT } from "../i18n";
 
@@ -52,8 +52,10 @@ function HomePage() {
 
   return (
     <>
-      <section className="warm-glow">
-        <div className="container-page grid items-center gap-12 py-16 text-start lg:grid-cols-2 lg:py-24">
+      <section className="warm-glow relative overflow-hidden">
+        <div className="hero-orb -end-24 top-10 size-80 bg-primary/20" aria-hidden="true" />
+        <div className="hero-orb -start-24 bottom-0 size-72 bg-secondary/15" aria-hidden="true" />
+        <div className="container-page relative grid items-center gap-12 py-16 text-start lg:grid-cols-2 lg:py-24">
           <div>
             <p className="eyebrow">{t("home.hero.eyebrow")}</p>
             <h1 className="mt-4 text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
@@ -78,17 +80,7 @@ function HomePage() {
             </div>
           </div>
 
-          <div className="card-soft overflow-hidden">
-            <img
-              src={heroImage}
-              width={1200}
-              height={900}
-              alt={t("home.hero.imageAlt")}
-              className="h-auto w-full"
-              fetchPriority="high"
-              decoding="async"
-            />
-          </div>
+          <HeroVisual label={t("home.hero.imageAlt")} className="mx-auto w-full max-w-xl" />
         </div>
       </section>
 
@@ -102,10 +94,18 @@ function HomePage() {
             {services.map((service, i) => {
               const Icon = icons[i]!;
               return (
-                <li key={service.id} className="card-soft p-6">
-                  <span className="inline-flex size-11 items-center justify-center rounded-xl bg-accent text-accent-foreground">
-                    <Icon className="size-5" aria-hidden="true" />
-                  </span>
+                <li key={service.id} className="card-soft card-lift p-6">
+                  <div className="flex items-start justify-between">
+                    <span className="inline-flex size-11 items-center justify-center rounded-xl bg-accent text-accent-foreground ring-1 ring-primary/20">
+                      <Icon className="size-5" aria-hidden="true" />
+                    </span>
+                    <span
+                      className="font-display text-sm font-semibold text-foreground/25"
+                      aria-hidden="true"
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                  </div>
                   <h3 className="mt-4 text-lg font-semibold">{t(service.titleKey)}</h3>
                   <p className="mt-2 text-sm text-muted-foreground">{t(service.descriptionKey)}</p>
                 </li>
@@ -115,7 +115,7 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="section-y bg-sand" aria-labelledby="pricing-preview-heading">
+      <section className="section-y bg-sand bg-dots" aria-labelledby="pricing-preview-heading">
         <div className="container-page text-start">
           <p className="eyebrow">{t("home.pricing.eyebrow")}</p>
           <h2 id="pricing-preview-heading" className="mt-3 text-3xl font-bold sm:text-4xl">
@@ -124,7 +124,7 @@ function HomePage() {
           <p className="mt-3 max-w-2xl text-muted-foreground">{t("home.pricing.body")}</p>
           <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {teaser.map((row) => (
-              <li key={row.id} className="card-soft p-6">
+              <li key={row.id} className="card-soft card-lift p-6">
                 <h3 className="text-base font-semibold">{t(`pricing.rows.${row.id}.service`)}</h3>
                 <p className="mt-3">
                   <span className="text-sm text-muted-foreground line-through">
@@ -158,13 +158,20 @@ function HomePage() {
           </h2>
           <p className="mt-3 max-w-2xl text-muted-foreground">{t("home.proof.body")}</p>
           <div className="mt-8 grid gap-6 sm:grid-cols-3">
-            {["home.proof.card1", "home.proof.card2", "home.proof.card3"].map((key) => (
-              <div key={key} className="card-soft p-6">
-                <span className="rounded-full bg-accent px-3 py-1 text-xs font-semibold text-accent-foreground">
-                  {t("common.comingSoon")}
-                </span>
-                <h3 className="mt-4 text-base font-semibold">{t(key)}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{t("home.proof.cardBody")}</p>
+            {["home.proof.card1", "home.proof.card2", "home.proof.card3"].map((key, i) => (
+              <div key={key} className="card-soft card-lift overflow-hidden">
+                <ProofThumb
+                  index={i}
+                  className="h-40"
+                  label={t("proof.imageAlt", { type: t(key).toLowerCase() })}
+                />
+                <div className="p-6">
+                  <span className="rounded-full bg-accent px-3 py-1 text-xs font-semibold text-accent-foreground">
+                    {t("common.comingSoon")}
+                  </span>
+                  <h3 className="mt-4 text-base font-semibold">{t(key)}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground">{t("home.proof.cardBody")}</p>
+                </div>
               </div>
             ))}
           </div>

@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ImageIcon } from "lucide-react";
-
+import { ProofThumb } from "../components/site/Visuals";
 import { translate, useT } from "../i18n";
 
 const TITLE = translate("en", "proof.meta.title");
@@ -61,14 +60,11 @@ function ProofOfWorkPage() {
               const type = t(`proof.slot${n}.type`);
               const note = t(`proof.slot${n}.note`);
               return (
-                <li key={n} className="card-soft overflow-hidden">
-                  <div
-                    className="flex h-44 items-center justify-center bg-sand"
-                    role="img"
-                    aria-label={t("proof.imageAlt", { type: type.toLowerCase() })}
-                  >
-                    <ImageIcon className="size-8 text-muted-foreground" aria-hidden="true" />
-                  </div>
+                <li key={n} className="card-soft card-lift overflow-hidden">
+                  <ProofThumb
+                    index={n - 1}
+                    label={t("proof.imageAlt", { type: type.toLowerCase() })}
+                  />
                   <div className="p-6">
                     <div className="flex flex-wrap items-center gap-2">
                       <span className="rounded-full bg-secondary/10 px-3 py-1 text-xs font-semibold text-secondary">
